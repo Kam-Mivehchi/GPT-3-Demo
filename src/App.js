@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from 'axios'
 
 function App() {
-  const [result, setResult] = useState([])
+  const [result, setResult] = useState({})
   const onSubmit = async (e) => {
     console.log(e.target, e.target[0].value)
     e.preventDefault()
@@ -33,17 +33,12 @@ function App() {
     };
 
     axios(configuration).then(function (res) {
-      setResult(prev =>
-        [
-          {
-            userInput,
-            response: res.data.choices[0].text
-          },
-          ...prev
-        ])
+      setResult({ userInput, response: res.data.choices[0].text })
+
     }).catch((error) => {
       console.log(error);
     });
+
   }
 
 
@@ -56,9 +51,7 @@ function App() {
         </form>
       </nav>
       <main>
-        {result.map((res) => {
-          return <h2>{res}</h2>
-        })}
+
 
       </main>
 
