@@ -5,7 +5,7 @@ const useFetch = ((prompt) => {
 
 
     const [apiData, setApiData] = useState('');
-    const [serverError, setServerError] = useState(null);
+
     useEffect(() => {
         const apiCall = async () => {
             if (!prompt) {
@@ -35,8 +35,8 @@ const useFetch = ((prompt) => {
 
 
             }).catch((error) => {
-                setServerError(error)
-                console.log(serverError);
+
+
 
             });
 
@@ -44,7 +44,7 @@ const useFetch = ((prompt) => {
         apiCall();
     }, [prompt])
 
-    return { apiData, serverError }
+    return { apiData }
 }
 )
 

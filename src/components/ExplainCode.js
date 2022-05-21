@@ -8,9 +8,8 @@ const ExplainCode = () => {
     const [prompt, setPrompt] = useState(JSON.parse(localStorage.getItem('prompt')) || [])
     const [answer, setAnswer] = useState(JSON.parse(localStorage.getItem('answer')) || [])
 
-    const { serverError, apiData } = useFetch(
+    const { apiData } = useFetch(
         prompt ? `${prompt}  Here's what the above class is doing:\n1` : ''
-
     );
 
     const onSubmit = async (e) => {
@@ -28,10 +27,9 @@ const ExplainCode = () => {
         localStorage.setItem('prompt', JSON.stringify(prompt));
         localStorage.setItem('answer', JSON.stringify([...answer]));
     }, [prompt]);
+
     return (
         <>
-
-
             <Form onSubmit={onSubmit} style={{ width: '60vw', margin: 'auto' }}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label as='h2'>Enter Your Code Here</Form.Label>
@@ -44,7 +42,6 @@ const ExplainCode = () => {
 
                 return (
                     <>
-
                         <Card className="my-4" style={{ width: '80vw', margin: 'auto', borderRadius: '10px' }}>
                             <Card.Body>
                                 <Card.Title as='h4'>Your Code:</Card.Title>
