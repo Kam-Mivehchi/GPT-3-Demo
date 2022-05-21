@@ -2,13 +2,16 @@
 import './App.css';
 import { useState } from "react";
 import axios from 'axios'
-
+import useFetch from './hooks/usefetch';
 import { Routes, Route, Link } from "react-router-dom";
-
+import ExplainCode from './components/ExplainCode'
 function App() {
-  const [result, setResult] = useState({ userInput: 'Enter something', response: "you see the response here" })
+  const [prompt, setPrompt] = useState({ userInput: 'Enter something', response: "you see the response here" })
 
-  const presets = ['Animals', 'Space', 'Earth', 'Science', 'Health', 'Ocean', 'Travel']
+  const { isLoading, serverError, apiData } = useFetch(
+    `${prompt} Here's what the above class is doing:\n1`
+
+  );
 
   const onSubmit = async (e) => {
     console.log(e)
@@ -16,7 +19,7 @@ function App() {
     if (!e.target[0].value) {
       return;
     }
-    apiCall(e.target[0].value);
+    setPrompt(e.target[0].value);
     e.target[0].value = ''
   }
   // const submitPreset = async (e) => {
@@ -29,36 +32,6 @@ function App() {
 
   // }
 
-  const apiCall = async (userInput) => {
-
-    const req = JSON.stringify({
-      "prompt": ` \n\n${userInput} Here's what the above class is doing:\n1.`,
-      "max_tokens": 1000,
-      "temperature": 1,
-      "top_p": 1,
-      "frequency_penalty": 0,
-      "presence_penalty": 0
-    });
-    const configuration = {
-      method: 'post',
-      url: `https://api.openai.com/v1/engines/text-curie-001/completions`,
-      headers: {
-        'Authorization': `Bearer ${process.env.REACT_APP_API_KEY
-          }`,
-        'Content-Type': 'application/json'
-      },
-      data: req
-    };
-
-    axios(configuration).then(function (res) {
-      setResult({ userInput, response: `${res.data.choices[0].text}` })
-      console.log(res.data)
-
-    }).catch((error) => {
-      console.log(error);
-    });
-
-  }
 
 
   return (
@@ -78,11 +51,12 @@ function App() {
           })} */}
           <h3>Topic:</h3>
           <p>
-            {result.userInput}
+            {apiData.userInput}
           </p>
           <h3>Fun Fact:</h3>
           <p>
-            {result.response}
+            {isLoading ? `Loading...Please Wait` : apiData.response}
+            {/* {apiData.response} */}
           </p>
         </div>
 
@@ -90,7 +64,6 @@ function App() {
 
       <footer style={{ textAlign: 'center' }}>
         <h5>
-
           Created by Kamyar Mivehchi 2022
         </h5>
       </footer>
