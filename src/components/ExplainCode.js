@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useFetch from '../hooks/usefetch';
 
 const ExplainCode = () => {
-    const [prompt, setPrompt] = useState({ userInput: 'Enter something', response: "you see the response here" })
+    const [prompt, setPrompt] = useState('')
+
 
     const { isLoading, serverError, apiData } = useFetch(
-        `${prompt} + Here's what the above class is doing:\n1`
+        prompt ? `${prompt}  Here's what the above class is doing:\n1` : ''
 
     );
 
@@ -29,11 +30,11 @@ const ExplainCode = () => {
           })} */}
             <h3>Your Code:</h3>
             <p>
-                {prompt}
+                {prompt ? prompt : "Youir input will be displayed here"}
             </p>
             <h3>Here's what the code above is doing:</h3>
             <p>
-                {apiData.response}
+                {apiData ? apiData : "your results will be displayed here"}
                 {/* {apiData.response} */}
             </p>
         </>

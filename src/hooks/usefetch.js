@@ -4,13 +4,15 @@ import axios from 'axios'
 const useFetch = ((prompt) => {
 
     const [isLoading, setIsLoading] = useState(false);
-    const [apiData, setApiData] = useState({ userInput: 'Enter something', response: "you see the response here" });
+    const [apiData, setApiData] = useState('');
     const [serverError, setServerError] = useState(null);
     useEffect(() => {
         const apiCall = async () => {
-
+            if (!prompt) {
+                return
+            }
             const req = JSON.stringify({
-                "prompt": `${prompt}`,
+                "prompt": prompt,
                 "max_tokens": 1000,
                 "temperature": 1,
                 "top_p": 1,
@@ -21,15 +23,14 @@ const useFetch = ((prompt) => {
                 method: 'post',
                 url: `https://api.openai.com/v1/engines/text-curie-001/completions`,
                 headers: {
-                    'Authorization': `Bearer ${process.env.REACT_APP_API_KEY
-                        }`,
+                    'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
                     'Content-Type': 'application/json'
                 },
                 data: req
             };
 
             axios(configuration).then(function (res) {
-                setApiData({ prompt: `${prompt}`, response: `${res.data.choices[0].text}` })
+                setApiData(res.data.choices[0].text)
                 console.log(apiData)
                 setIsLoading(false);
 
