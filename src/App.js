@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from 'axios'
 
 function App() {
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState([])
   const onSubmit = async (e) => {
     console.log(e.target, e.target[0].value)
     e.preventDefault()
@@ -25,7 +25,8 @@ function App() {
       method: 'post',
       url: `https://api.openai.com/v1/engines/text-curie-001/completions`,
       headers: {
-        'Authorization': `Bearer ${process.env.OPEN_API_KEY}`,
+        'Authorization': `Bearer ${process.env.REACT_APP_API_KEY
+          }`,
         'Content-Type': 'application/json'
       },
       data: req
@@ -35,7 +36,7 @@ function App() {
       setResult(prev =>
         [
           {
-            prompt,
+            userInput,
             response: res.data.choices[0].text
           },
           ...prev
@@ -55,7 +56,9 @@ function App() {
         </form>
       </nav>
       <main>
-
+        {result.map((res) => {
+          return <h2>{res}</h2>
+        })}
 
       </main>
 
