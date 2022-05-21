@@ -3,11 +3,12 @@ import useFetch from '../hooks/usefetch';
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-const ExplainCode = () => {
-    const [prompt, setPrompt] = useState([])
-    const [answer, setAnswer] = useState([])
 
-    const { isLoading, serverError, apiData } = useFetch(
+const ExplainCode = () => {
+    const [prompt, setPrompt] = useState(JSON.parse(localStorage.getItem('prompt')) || [])
+    const [answer, setAnswer] = useState(JSON.parse(localStorage.getItem('answer')) || [])
+
+    const { serverError, apiData } = useFetch(
         prompt ? `${prompt}  Here's what the above class is doing:\n1` : ''
 
     );
@@ -22,17 +23,20 @@ const ExplainCode = () => {
         setAnswer([`${apiData}`, ...answer])
         e.target[0].value = ''
     }
+
+    useEffect(() => {
+        localStorage.setItem('prompt', JSON.stringify(prompt));
+        localStorage.setItem('answer', JSON.stringify([...answer]));
+    }, [prompt]);
     return (
         <>
 
-            {/* {presets.map((topic) => {
-            return (<button type="button" onClick={submitPreset} value={topic} >{topic}</button>)
-          })} */}
-            <Form onSubmit={onSubmit}>
+
+            <Form onSubmit={onSubmit} style={{ width: '60vw', margin: 'auto' }}>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label as='h2'>Enter Your Code Here</Form.Label>
                     <Form.Control as="textarea" rows={5} placeholder="Enter Code Here" />
-                    <Button type="submit" value="Generate names" >Explain it!</Button>
+                    <Button className="my-2" type="submit" value="Generate names" >Explain it!</Button>
                 </Form.Group>
             </Form>
 
@@ -40,11 +44,12 @@ const ExplainCode = () => {
 
                 return (
                     <>
+
                         <Card className="my-4" style={{ width: '80vw', margin: 'auto', borderRadius: '10px' }}>
                             <Card.Body>
                                 <Card.Title as='h4'>Your Code:</Card.Title>
                                 <Card.Text className="bg-dark  " style={{ textAlign: 'start', borderRadius: '10px' }}>
-                                    <pre className='pre-scrollable text-white p-3' ><code style={{ whiteSpace: 'pre-line' }}>{inp}</code></pre>
+                                    <pre className='pre-scrollable text-white p-3' ><code style={{ whiteSpace: 'pre-line' }} > {inp}</code></pre>
                                 </Card.Text>
                                 <hr className='' />
                                 <Card.Title as='h4' className="text-left">Here's what the code above is doing:</Card.Title>
@@ -58,11 +63,6 @@ const ExplainCode = () => {
                     </>
                 )
             })}
-
-
-
-
-
         </>
     )
 }

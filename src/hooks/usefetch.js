@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const useFetch = ((prompt) => {
 
-    const [isLoading, setIsLoading] = useState(false);
+
     const [apiData, setApiData] = useState('');
     const [serverError, setServerError] = useState(null);
     useEffect(() => {
@@ -32,19 +32,19 @@ const useFetch = ((prompt) => {
             axios(configuration).then(function (res) {
                 setApiData(res.data.choices[0].text)
                 console.log(apiData)
-                setIsLoading(false);
+
 
             }).catch((error) => {
                 setServerError(error)
                 console.log(serverError);
-                setIsLoading(false);
+
             });
 
         }
         apiCall();
     }, [prompt])
 
-    return { isLoading, apiData, serverError }
+    return { apiData, serverError }
 }
 )
 
