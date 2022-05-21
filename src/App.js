@@ -2,19 +2,36 @@
 import './App.css';
 import { useState } from "react";
 import axios from 'axios'
+import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
   const [result, setResult] = useState({ userInput: 'Enter something', response: "you see the response here" })
+
+  const presets = ['Animals', 'Space', 'Earth', 'Science', 'Health', 'Ocean', 'Travel']
+
   const onSubmit = async (e) => {
-    console.log(e.target, e.target[0].value)
+    console.log(e)
     e.preventDefault()
     if (!e.target[0].value) {
       return;
     }
-    const userInput = e.target[0].value;
+    apiCall(e.target[0].value);
     e.target[0].value = ''
+  }
+  const submitPreset = async (e) => {
+    console.log(e)
+    e.preventDefault()
+    if (!e.target.value) {
+      return;
+    }
+    apiCall(e.target.value);
+
+  }
+
+  const apiCall = async (userInput) => {
+
     const req = JSON.stringify({
-      "prompt": `Summarize this for a second-grade student:\n\n${userInput}`,
+      "prompt": `Fun Fact \n\n${userInput}`,
       "max_tokens": 1000,
       "temperature": 1,
       "top_p": 1,
@@ -33,7 +50,8 @@ function App() {
     };
 
     axios(configuration).then(function (res) {
-      setResult({ userInput, response: res.data.choices[0].text })
+      setResult({ userInput, response: `${res.data.choices[0].text}` })
+      console.log(res.data)
 
     }).catch((error) => {
       console.log(error);
@@ -45,23 +63,35 @@ function App() {
   return (
     <div className="">
       <nav>
-        <form onSubmit={onSubmit}>
-          <input type="text" placeholder="Enter a Prompt" />
-          <input type="submit" value="Generate names" />
-        </form>
+
       </nav>
       <main>
-        <p>
-          {result.userInput}
-        </p>
-        <p>
-          {result.response}
-        </p>
+        <div className="stage" style={{ textAlign: 'center' }}>
+
+          <form onSubmit={onSubmit}>
+            <input type="text" placeholder="Enter a Topic" />
+            <input type="submit" value="Generate names" />
+          </form>
+          {presets.map((topic) => {
+            return (<button type="button" onClick={submitPreset} value={topic} >{topic}</button>)
+          })}
+          <h3>Topic:</h3>
+          <p>
+            {result.userInput}
+          </p>
+          <h3>Fun Fact:</h3>
+          <p>
+            {result.response}
+          </p>
+        </div>
 
       </main>
 
       <footer style={{ textAlign: 'center' }}>
-        Created by Kamyar Mivehchi 2022
+        <h5>
+
+          Created by Kamyar Mivehchi 2022
+        </h5>
       </footer>
     </div>
   );
