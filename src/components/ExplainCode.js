@@ -5,7 +5,7 @@ const ExplainCode = () => {
     const [prompt, setPrompt] = useState({ userInput: 'Enter something', response: "you see the response here" })
 
     const { isLoading, serverError, apiData } = useFetch(
-        `${prompt} Here's what the above class is doing:\n1`
+        `${prompt} + Here's what the above class is doing:\n1`
 
     );
 
@@ -27,13 +27,13 @@ const ExplainCode = () => {
             {/* {presets.map((topic) => {
             return (<button type="button" onClick={submitPreset} value={topic} >{topic}</button>)
           })} */}
-            <h3>Topic:</h3>
+            <h3>Your Code:</h3>
             <p>
-                {apiData.userInput}
+                {prompt}
             </p>
-            <h3>Fun Fact:</h3>
+            <h3>Here's what the code above is doing:</h3>
             <p>
-                {isLoading ? `Loading...Please Wait` : apiData.response}
+                {apiData.response}
                 {/* {apiData.response} */}
             </p>
         </>

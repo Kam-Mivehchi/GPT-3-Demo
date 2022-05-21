@@ -10,7 +10,7 @@ const useFetch = ((prompt) => {
         const apiCall = async () => {
 
             const req = JSON.stringify({
-                "prompt": prompt,
+                "prompt": `${prompt}`,
                 "max_tokens": 1000,
                 "temperature": 1,
                 "top_p": 1,
@@ -29,7 +29,7 @@ const useFetch = ((prompt) => {
             };
 
             axios(configuration).then(function (res) {
-                setApiData({ prompt, response: `${res.data.choices[0].text}` })
+                setApiData({ prompt: `${prompt}`, response: `${res.data.choices[0].text}` })
                 console.log(apiData)
                 setIsLoading(false);
 
