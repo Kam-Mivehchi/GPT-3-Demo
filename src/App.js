@@ -2,6 +2,7 @@
 import './App.css';
 import { useState } from "react";
 import axios from 'axios'
+
 import { Routes, Route, Link } from "react-router-dom";
 
 function App() {
@@ -18,20 +19,20 @@ function App() {
     apiCall(e.target[0].value);
     e.target[0].value = ''
   }
-  const submitPreset = async (e) => {
-    console.log(e)
-    e.preventDefault()
-    if (!e.target.value) {
-      return;
-    }
-    apiCall(e.target.value);
+  // const submitPreset = async (e) => {
+  //   console.log(e)
+  //   e.preventDefault()
+  //   if (!e.target.value) {
+  //     return;
+  //   }
+  //   apiCall(e.target.value);
 
-  }
+  // }
 
   const apiCall = async (userInput) => {
 
     const req = JSON.stringify({
-      "prompt": `Fun Fact \n\n${userInput}`,
+      "prompt": ` \n\n${userInput} Here's what the above class is doing:\n1.`,
       "max_tokens": 1000,
       "temperature": 1,
       "top_p": 1,
@@ -72,9 +73,9 @@ function App() {
             <input type="text" placeholder="Enter a Topic" />
             <input type="submit" value="Generate names" />
           </form>
-          {presets.map((topic) => {
+          {/* {presets.map((topic) => {
             return (<button type="button" onClick={submitPreset} value={topic} >{topic}</button>)
-          })}
+          })} */}
           <h3>Topic:</h3>
           <p>
             {result.userInput}
