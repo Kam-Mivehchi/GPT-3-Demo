@@ -38,11 +38,11 @@ function App() {
 
 
   return (
-    <div className="">
-      <nav>
-        <Navbar bg="light" expand="lg">
-          <Container>
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+    <div className="max-h-screen" >
+      <nav className="w-100 ">
+        <Navbar bg="none" expand="md" className="custom " style={{ zIndex: '999' }}>
+          <Container className='' >
+            <Navbar.Brand href="#home" className='' style={{ fontSize: '1.75rem' }}>WhatAmIDoing.com</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="me-auto">
@@ -60,34 +60,19 @@ function App() {
           </Container>
         </Navbar>
       </nav>
-      <main>
-        <div className="stage" style={{ textAlign: 'center' }}>
+      <main className=' mx-auto my-4 ' style={{ maxHeight: '70%', }}>
+        <div className="stage  " style={{ textAlign: 'center', }}>
           <ExplainCode />
-          {/* <form onSubmit={onSubmit}>
-            <input type="text" placeholder="Enter a Topic" />
-            <input type="submit" value="Generate names" />
-          </form>
-
-          <h3>Topic:</h3>
-          <p>
-            {apiData.userInput}
-          </p>
-          <h3>Fun Fact:</h3>
-          <p>
-            {isLoading ? `Loading...Please Wait` : apiData.response}
-            {/* {apiData.response} */}
-
-          {/* </p> */}
         </div>
 
       </main>
 
-      <footer style={{ textAlign: 'center' }}>
+      {/* <footer className='fixed-bottom  mx-3' style={{ textAlign: 'start' }}>
         <h5>
           Created by Kamyar Mivehchi 2022
         </h5>
-      </footer>
-    </div>
+      </footer> */}
+    </div >
   );
 }
 

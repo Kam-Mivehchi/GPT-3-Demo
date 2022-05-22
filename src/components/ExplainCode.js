@@ -29,38 +29,44 @@ const ExplainCode = () => {
     }, [prompt]);
 
     return (
-        <>
-            <Form onSubmit={onSubmit} style={{ width: '60vw', margin: 'auto' }}>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+        <div className=' d-flex justify-content-between flex-column flex-md-row align-items-center mx-4 '>
+            <Form onSubmit={onSubmit} className='row mx-auto w-100 ' style={{}}>
+                <Form.Group className="mb-3 col-12 col-md-8 mx-auto" controlId="exampleForm.ControlTextarea1">
                     <Form.Label as='h2'>Enter Your Code Here</Form.Label>
-                    <Form.Control as="textarea" rows={5} placeholder="Enter Code Here" />
+                    <Form.Control as="textarea" rows={8} placeholder="Enter Code Here" className='border-10' />
                     <Button className="my-2" type="submit" value="Generate names" >Explain it!</Button>
+                    <Button className="my-2" onClick={() => {
+                        localStorage.clear()
+                        window.location.reload()
+                    }} >Clear History</Button>
                 </Form.Group>
             </Form>
+            <div className=" border  w-100 mx-5 flex align-items-center container border-10" style={{ width: '50%', height: '80vh', overflowY: 'scroll', }}>
 
-            {prompt.map((inp, idx) => {
+                {prompt.map((inp, idx) => {
 
-                return (
-                    <>
-                        <Card className="my-4" style={{ width: '80vw', margin: 'auto', borderRadius: '10px' }}>
-                            <Card.Body>
-                                <Card.Title as='h4'>Your Code:</Card.Title>
-                                <Card.Text className="bg-dark  " style={{ textAlign: 'start', borderRadius: '10px' }}>
-                                    <pre className='pre-scrollable text-white p-3' ><code style={{ whiteSpace: 'pre-line' }} > {inp}</code></pre>
-                                </Card.Text>
-                                <hr className='' />
-                                <Card.Title as='h4' className="text-left">Here's what the code above is doing:</Card.Title>
-                                <Card.Text >
-                                    <pre className="wrap" style={{ fontFamily: 'roboto', textAlign: 'start' }}>
-                                        {`1${answer[idx]}`}
-                                    </pre>
-                                </Card.Text>
-                            </Card.Body>
-                        </Card>
-                    </>
-                )
-            })}
-        </>
+                    return (
+                        <>
+                            <Card className="my-4 text-left" style={{ width: '100%', margin: 'auto', borderRadius: '10px' }}>
+                                <Card.Body>
+                                    <Card.Title as='h5'>Your Code:</Card.Title>
+                                    <Card.Text className="bg-dark border-10 text-left" >
+                                        <pre className='pre-scrollable text-white p-3' ><code style={{ whiteSpace: 'pre-line' }} > {inp}</code></pre>
+                                    </Card.Text>
+                                    <hr className='' />
+                                    <Card.Title as='h4' className="text-left">Here's what the code above is doing:</Card.Title>
+                                    <Card.Text >
+                                        <pre className="wrap" style={{ fontFamily: 'roboto', textAlign: 'start' }}>
+                                            {`1${answer[idx]}`}
+                                        </pre>
+                                    </Card.Text>
+                                </Card.Body>
+                            </Card>
+                        </>
+                    )
+                })}
+            </div>
+        </div >
     )
 }
 
