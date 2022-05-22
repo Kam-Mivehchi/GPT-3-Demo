@@ -26,7 +26,7 @@ const ExplainCode = () => {
     useEffect(() => {
         localStorage.setItem('prompt', JSON.stringify(prompt));
         localStorage.setItem('answer', JSON.stringify([...answer]));
-    }, [prompt]);
+    }, [answer, prompt]);
 
     return (
         <main className=' mx-auto my-4 ' style={{ maxHeight: '70%', }}>
