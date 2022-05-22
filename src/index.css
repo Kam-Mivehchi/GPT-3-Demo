@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Dosis:wght@200;300;400;500;600;700;800&family=Varela+Round&family=Yellowtail&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Roboto', 'Oxygen',
+  font-family: 'Dosis', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,6 +37,7 @@ code {
 }
 
 ::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
   border-radius: 10px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
@@ -58,14 +61,29 @@ code {
 
 }
 
-.gradient {
-  background: rgb(201, 191, 191);
+.backdrop {
+  background: #F8FAFC;
+}
+
+.cardbackdrop {
+  background: #F8FAFC;
 }
 
 .accent {
-  background: rgb(144, 95, 177)
+  background: #8B5CF6
 }
 
 .accentText {
-  color: rgb(144, 95, 177)
+  color: #8B5CF6
+}
+
+
+
+.sbColor {
+  scrollbar-color: #8B5CF6;
+}
+
+.cursive {
+  font-family: Yellowtail;
+  letter-spacing: .2rem;
 }
