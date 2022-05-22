@@ -21,7 +21,7 @@ const useFetch = ((prompt) => {
             });
             const configuration = {
                 method: 'post',
-                url: `https://api.openai.com/v1/engines/text-curie-001/completions`,
+                url: `http://api.openai.com/v1/engines/text-curie-001/completions`,
                 headers: {
                     'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`,
                     'Content-Type': 'application/json'
