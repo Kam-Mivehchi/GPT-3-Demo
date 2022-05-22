@@ -29,18 +29,37 @@ const ExplainCode = () => {
     }, [prompt]);
 
     return (
-        <div className=' d-flex justify-content-between flex-column flex-md-row align-items-center mx-4 '>
-            <Form onSubmit={onSubmit} className='row mx-auto w-100 ' style={{}}>
-                <Form.Group className="mb-3 col-12 col-md-8 mx-auto" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label as='h2'>Enter Your Code Here</Form.Label>
-                    <Form.Control as="textarea" rows={8} placeholder="Enter Code Here" className='border-10' />
-                    <Button className="my-2" type="submit" value="Generate names" >Explain it!</Button>
-                    <Button className="my-2" onClick={() => {
-                        localStorage.clear()
-                        window.location.reload()
-                    }} >Clear History</Button>
-                </Form.Group>
-            </Form>
+        <div className=' d-flex justify-content-between flex-column flex-lg-row align-items-start mx-4 '>
+            <div className="flex flex-column w-100  text-center my-auto">
+                <div className="w-75 mx-auto  ">
+                    <h4 className='text-white'>Don't know what your doing? </h4>
+                    <h2 className='accentText'>You've come to the right place</h2>
+
+
+                    <p >
+                        WhatAmIDoing.com utilizes Open Ai's machine learning engine to quickly convert any languages code into plain english.
+                        This robust API allows for you, the user, to simply copy and paste any code you don't understand and instantly see what its doing.
+                    </p>
+                    <p>
+                        This application was built with future development in mind. A custom fetch hook, which utilizes axios http requests, allows for additional prompts to easily be added down the line
+                    </p>
+                </div>
+                <hr />
+                <Form onSubmit={onSubmit} className='row  ' style={{}}>
+                    <Form.Group className="my-3 col-12 col-md-8 mx-auto" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label as='h2'>Paste Your Code Here</Form.Label>
+                        <Form.Control as="textarea" rows={8} placeholder="Enter Code Here" className='border-10 my-4 ' />
+                        <div className="d-flex flex-column ">
+
+                            <Button className=" accent border-10 w-75 mx-auto mb-2 px-5 py-2  " type="submit" value="Generate names" >Explain it!</Button>
+                            <Button className="border-10  py-0 w-25 mx-auto bg-secondary border-secondary" onClick={() => {
+                                localStorage.clear()
+                                window.location.reload()
+                            }} >Clear History</Button>
+                        </div>
+                    </Form.Group>
+                </Form>
+            </div>
             <div className=" border  w-100 mx-5 flex align-items-center container border-10" style={{ width: '50%', height: '80vh', overflowY: 'scroll', }}>
 
                 {prompt.map((inp, idx) => {
