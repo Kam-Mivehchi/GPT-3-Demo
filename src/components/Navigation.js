@@ -5,10 +5,10 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 function Navigation() {
     return (
-        <nav className="w-100 " style={{}}>
+        <nav className="w-100 " >
             <Navbar bg="none" expand="md" className="custom " style={{ zIndex: '999' }}>
                 <Container  >
-                    <Navbar.Brand className="font-weight-black  " style={{ fontSize: '2rem', fontWeight: '600', color: '#8B5CF6' }}>{`Confused Coder`}</Navbar.Brand>
+                    <Navbar.Brand className="font-weight-black" style={{ fontSize: '2rem', fontWeight: '600', color: '#8B5CF6' }}>{`Confused Coder`}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav text-shadow ">
                         <Nav className="mt-2 h4" >

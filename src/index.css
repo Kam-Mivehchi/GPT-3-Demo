@@ -52,10 +52,6 @@ code {
   }
 }
 
-.textShadow {
-  text-shadow: gray 0px 3px 5px
-}
-
 .boxShadow {
   box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 
@@ -65,22 +61,12 @@ code {
   background: #F8FAFC;
 }
 
-.cardbackdrop {
-  background: #F8FAFC;
-}
-
 .accent {
   background: #8B5CF6
 }
 
 .accentText {
   color: #8B5CF6
-}
-
-
-
-.sbColor {
-  scrollbar-color: #8B5CF6;
 }
 
 .cursive {
