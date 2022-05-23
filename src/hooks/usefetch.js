@@ -42,7 +42,7 @@ const useFetch = ((prompt) => {
 
         }
         apiCall();
-    }, [prompt, apiData])
+    }, [prompt])
 
     return { apiData }
 }
