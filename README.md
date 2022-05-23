@@ -1,6 +1,6 @@
 # Confused Coder
 
-###Screen Shots
+### Screen Shots
 ![image](https://user-images.githubusercontent.com/90432404/169724024-48fafff0-946c-46b6-943e-e36c69815f63.png)
 
 ## About
